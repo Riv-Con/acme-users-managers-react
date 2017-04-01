@@ -1,6 +1,9 @@
 const db = require( './db' );
 const User = require( './User' );
 
+User.belongsTo(User, { as: 'manager' });
+User.hasMany(User, { as: 'teamMember', foreignKet: 'managerId' });
+
 const sync = () => db.sync({ force: true });
 
 const addUsers = () => {
