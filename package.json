@@ -4,7 +4,9 @@
   "description": "react, react-router project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postInstall": "npm run webpack",
+    "webpack": "./node_modules/webpack/bin/webpack.js",
+    "start:dev": "nom run webpack -- -w & nodemon --ignore dist/ --ignore src/ server.js" 
   },
   "author": "Vince Rios",
   "license": "ISC"
