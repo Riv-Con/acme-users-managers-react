@@ -10,6 +10,6 @@ const addUsers = () => {
 };
 
 const seed = () => sync()
-    .then(() => addUsers);
+    .then(() => addUsers());
 
 module.exports = { seed, sync, models: { User } };
