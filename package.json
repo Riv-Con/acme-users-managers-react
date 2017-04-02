@@ -4,7 +4,7 @@
   "description": "react, react-router project",
   "main": "server.js",
   "scripts": {
-    "postInstall": "npm run webpack",
+    "postinstall": "npm run webpack",
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "start:dev": "npm run webpack -- -w & nodemon --ignore dist/ --ignore src/ server.js",
     "start": "node server.js"

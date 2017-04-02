@@ -11,8 +11,9 @@ const RouteContainer = () => {
         <Router history={ hashHistory }>
             <Route path="/" component={ Main }>
                 <IndexRedirect to="/users" />
-                <Route path="/users" component={ UsersList } />
-                <Route path="/Users/Edit" component={ UsersEdit } />
+                <Route path="/users" component={ UsersList } >
+                    <Route path="/Users/Edit" component={ UsersEdit } />
+                </Route>
             </Route>
         </Router>
     )
