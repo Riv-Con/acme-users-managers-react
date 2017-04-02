@@ -15,6 +15,12 @@ const defineMethods = {
     classMethods: {
         userRecords: function() {
             return this.findAll({
+                include: [
+                    { model: this,
+                        as: 'manager',
+                        foreignKey: 'managerId'
+                    }
+                ],
                 order: [
                     ['name', 'ASC']
                 ]
