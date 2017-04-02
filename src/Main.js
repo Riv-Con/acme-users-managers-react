@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, IndexRedirect } from 'react-router';
 
 import NavLink from './NavLink';
 import axios from 'axios';
@@ -15,7 +15,7 @@ class Main extends Component {
             <div className="container">
                 <h3>Acme Users - Managers</h3>
                 <nav>
-                    <ul className="nav nav-tabs">
+                    <ul className="nav nav-tabs" role="nav">
                         <li><NavLink to="/users">Users ({ userLength })</NavLink></li>
                         <li><NavLink to="/users/edit">Users ({ userLength })</NavLink></li>
                     </ul>

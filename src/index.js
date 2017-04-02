@@ -4,7 +4,7 @@ import { Router, Route, IndexRedirect, hashHistory } from 'react-router';
 
 import Main from './Main';
 import UsersList from './UsersList';
-import UsersEdit from 'UsersEdit';
+import UsersEdit from './UsersEdit';
 
 const RouteContainer = () => {
     return (
