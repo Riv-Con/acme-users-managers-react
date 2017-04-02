@@ -14,17 +14,30 @@ const defineAttr = {
 const defineMethods = {
     classMethods: {
         userRecords: function() {
-            return this.findAll({ 
-                include: [
-                    { model: this,
-                        as: 'manager'
-                    }
-                ],
+            return this.findAll({
                 order: [
                     ['name', 'ASC']
                 ]
             })
-        },
+        }
+    }
+};
+
+// const defineMethods = {
+//     classMethods: {
+//         managerRecords: function() {
+//             return this.findAll({ 
+//                 where: {isMgr: true },
+//                 include: [
+//                     { model: this,
+//                         as: 'teamMember'
+//                     }
+//                 ],
+//                 order: [
+//                     ['name', 'ASC']
+//                 ]
+//             })
+//         },
 //         teamRecords: function() {
 //             return this.findAll({
 //                 order: [
@@ -67,8 +80,8 @@ const defineMethods = {
 //                     return _mgr.save();
 //                 })
 //         }
-    }
-};
+//     }
+// };
 
 const User = acmeDB.define('user', defineAttr, defineMethods);
 

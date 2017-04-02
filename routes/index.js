@@ -3,22 +3,12 @@ const router = express.Router();
 const db = require( '../db' );
 const models = db.models;
 
-router.get('/api/users', (req, res, next) => {
-    let managers, teamMembers;
-    models.User.managerRecords()
-        .then(_managers => {
-            managers = _managers;
+router.get('/users', (req, res, next) => {
+    models.User.userRecords()
+        .then(users => {
+            res.send(users);
         })
-        .then(() => {
-            return models.User.teamRecords()
-        })
-        .then(_teamMembers => {
-            teamMembers = _teamMembers;
-        })
-        .then(() => {
-            res.send({ managers, teamMembers });
-        })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
 });
 
 router.get('/api/managers', (req, res, next) => {

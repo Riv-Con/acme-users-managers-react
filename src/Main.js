@@ -11,7 +11,12 @@ class Main extends Component {
     }
 
     componentDidMount() {
-
+        axios.get('api/users')
+            .then((response) => response.data)
+            .then((users) => {
+                this.setState({ users })
+                console.log('State: ', this.state)
+            })
     }
 
     render() {

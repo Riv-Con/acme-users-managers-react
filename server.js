@@ -7,6 +7,7 @@ const port = process.env.PORT || 3000;
 
 db.seed()
     .then(() => console.log('db is seeded'))
+    .then(() => console.log('models: ', db.models))
     .catch(err => console.log(err));
 
 server.listen(port, () => console.log(`listening on ${port}`));
