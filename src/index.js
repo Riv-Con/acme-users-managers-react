@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import { Router, Route, IndexRedirect, hashHistory } from 'react-router';
 
 import Main from './Main';
+import UsersList from './UsersList';
+import UsersEdit from 'UsersEdit';
 
 const RouteContainer = () => {
     return (
@@ -16,5 +18,5 @@ const RouteContainer = () => {
     )
 };
 
-let root document.getElementById('root');
+let root = document.getElementById('root');
 render(<RouteContainer />, root);
