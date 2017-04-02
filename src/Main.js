@@ -5,9 +5,9 @@ import NavLink from './NavLink';
 import axios from 'axios';
 
 class Main extends Component {
-    component() {
+    constructor() {
         super();
-        this.state = { view: '', users: [] }
+        this.state = { view: '', users: [] };
     }
     render() {
         let userLength = this.state.users.length;
