@@ -1,0 +1,34 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+
+import NavLink from './NavLink';
+import axios from 'axios';
+
+class Main extends Component {
+    component() {
+        super();
+        this.state = { view: '', users: [] }
+    }
+    render() {
+        let userLength = this.state.users.length;
+        return (
+            <div className="container">
+                <h3>Acme Users - Managers</h3>
+                <nav>
+                    <ul className="nav nav-tabs">
+                        <li><NavLink to="/users">Users ({ userLength })</NavLink></li>
+                        <li><NavLink to="/users/edit">Users ({ userLength })</NavLink></li>
+                    </ul>
+                </nav>
+                { React.cloneElement(this.props.children, 
+                    {
+                        users: this.state.users
+                    }
+                  )
+                }
+            </div>
+        )
+    }
+}
+
+export default Main;
