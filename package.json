@@ -6,7 +6,7 @@
   "scripts": {
     "postInstall": "npm run webpack",
     "webpack": "./node_modules/webpack/bin/webpack.js",
-    "start:dev": "nom run webpack -- -w & nodemon --ignore dist/ --ignore src/ server.js",
+    "start:dev": "npm run webpack -- -w & nodemon --ignore dist/ --ignore src/ server.js",
     "start": "node server.js"
   },
   "author": "Vince Rios",
