@@ -17,7 +17,6 @@ class Main extends Component {
                 <nav>
                     <ul className="nav nav-tabs" role="nav">
                         <li><NavLink to="/users">Users ({ userLength })</NavLink></li>
-                        <li><NavLink to="/users/edit">Users ({ userLength })</NavLink></li>
                     </ul>
                 </nav>
                 { React.cloneElement(this.props.children, 
