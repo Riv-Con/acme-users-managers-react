@@ -6,13 +6,20 @@ User.hasMany(User, { as: 'teamMember', foreignKet: 'managerId' });
 
 const sync = () => db.sync({ force: true });
 
+const addUsersAsMgr = () => {
+    const users = ['Moe', 'Larry', 'Curly'];
+    const promiseArr = users.map( name => User.create({ name: name, isMgr: true }));
+    return Promise.all(promiseArr);
+};
+
 const addUsers = () => {
-    const users = ['Moe', 'Larry', 'Curly', 'Shep', 'Vince'];
+    const users = ['Shep', 'Vince'];
     const promiseArr = users.map( name => User.create({ name }));
     return Promise.all(promiseArr);
 };
 
 const seed = () => sync()
+    .then(() => addUsersAsMgr())
     .then(() => addUsers());
 
 module.exports = { seed, sync, models: { User } };

@@ -9,6 +9,11 @@ class Main extends Component {
         super();
         this.state = { view: '', users: [] };
     }
+
+    componentDidMount() {
+
+    }
+
     render() {
         let userLength = this.state.users.length;
         return (
