@@ -6,20 +6,28 @@ User.hasMany(User, { as: 'teamMember', foreignKey: 'managerId' });
 
 const sync = () => db.sync({ force: true });
 
-const addUsersAsMgr = () => {
-    const users = ['Moe', 'Larry', 'Curly'];
-    const promiseArr = users.map( name => User.create({ name: name, isMgr: true }));
-    return Promise.all(promiseArr);
-};
-
 const addUsers = () => {
-    const users = ['Shep', 'Vince'];
-    const promiseArr = users.map( name => User.create({ name }));
+    const promiseArr = [];
+    const user = ['Moe', 'Larry', 'Curly', 'Shep', 'Vince'];
+    const mgr = [true, false, true, false, true];
+    for (let i = 0; i < user.length; i++) {
+        let name = user[i];
+        let isMgr = mgr[i];
+        // let managerId = mgrId[i];
+        let managerId = null;        
+        promiseArr.push(User.create({ name, isMgr }));
+    }
     return Promise.all(promiseArr);
 };
 
-const seed = () => sync()
-    .then(() => addUsersAsMgr())
-    .then(() => addUsers());
+const seed = () => sync().then(() => addUsers())
+    .then((userRecords) => {
+        const [moe, larry, curly, shep, vince] = userRecords;
+        return Promise.all([
+            moe.addTeamMember(vince.id),
+            moe.addTeamMember(larry.id),
+            curly.addTeamMember(shep.id),
+        ])
+    });
 
 module.exports = { seed, sync, models: { User } };

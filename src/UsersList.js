@@ -1,6 +1,5 @@
 import React from 'react';
-
-import NavLink from './NavLink';
+import { Link } from 'react-router';
 
 const UsersList = ({ users }) => {
     return (
@@ -16,17 +15,16 @@ const UsersList = ({ users }) => {
                                 </div>
                                 <div className="panel-body">
                                     Managed by: { '  ' }
-                                    { user.managerId ? 
-                                        (<NavLink to="/users/edit">{ user.managerId }</NavLink>) :
-                                        (<NavLink to="/users/edit">{ 'nobody' }</NavLink>)
-                                    }
+                                    <Link to="/users/edit">
+                                        { user.managerId ? user.managerId : 'manager not assigned'}
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                     ))
                 }
-                Note: Click the manager name to assign a manager.
+                Note: Click the manager name or tab-link to assign a manager.
             </div>
         </div>
     )

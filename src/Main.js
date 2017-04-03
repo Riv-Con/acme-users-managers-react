@@ -1,40 +1,30 @@
 import React, { Component } from 'react';
-import { Link, IndexRedirect } from 'react-router';
-
-import NavLink from './NavLink';
+import { Link } from 'react-router';
 import axios from 'axios';
 
 class Main extends Component {
-    constructor() {
+    constructor(props) {
         super();
-        this.state = { view: '', users: [] };
+        this.state = { users: [] };
     }
 
     componentDidMount() {
         axios.get('api/users')
-            .then((response) => response.data)
-            .then((users) => {
-                this.setState({ users })
-                console.log('State: ', this.state)
-            })
+            .then(response => response.data)
+            .then(users => this.setState({ users }));
     }
 
     render() {
-        let userLength = this.state.users.length;
+        let { users } = this.state;
+        let userLength = users.length;
         return (
             <div className="container">
                 <h3>Acme Users - Managers</h3>
-                <nav>
-                    <ul className="nav nav-tabs" role="nav">
-                        <li><NavLink to="/users">Users ({ userLength })</NavLink></li>
-                    </ul>
-                </nav>
-                { React.cloneElement(this.props.children, 
-                    {
-                        users: this.state.users
-                    }
-                  )
-                }
+                <ul className="nav nav-tabs">
+                    <li><Link to="/users">Users ({ userLength })</Link></li>
+                    <li><Link to="/users/edit">Assign Manager</Link></li>
+                </ul>
+                { React.cloneElement(this.props.children, { users }) }
             </div>
         )
     }
