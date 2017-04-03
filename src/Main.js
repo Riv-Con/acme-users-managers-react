@@ -13,7 +13,7 @@ class Main extends Component {
     componentDidMount() {
         axios.get('api/users')
             .then(response => response.data)
-            .then(users => this.setState({ users }));
+            .then(users => this.setState({ users }))
     }
 
     onManagerSelect(userID, managerID) {
@@ -21,7 +21,6 @@ class Main extends Component {
         axios.put('api/users/edit', { userID, managerID })
             .then(response => response.data)
             .then(users => this.setState({ users }))
-            .then(this.render())
             .then(() => hashHistory.push('/users'));
     }
 
