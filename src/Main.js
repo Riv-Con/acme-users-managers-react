@@ -15,6 +15,7 @@ class Main extends Component {
     }
 
     render() {
+        console.log(this.state);
         let { users } = this.state;
         let userLength = users.length;
         return (

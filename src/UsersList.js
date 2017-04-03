@@ -16,7 +16,7 @@ const UsersList = ({ users }) => {
                                 <div className="panel-body">
                                     Managed by: { '  ' }
                                     <Link to="/users/edit">
-                                        { user.managerId ? user.managerId : 'manager not assigned'}
+                                        { user.managerId ? user.manager.name : 'manager not assigned'}
                                     </Link>
                                 </div>
                             </div>
