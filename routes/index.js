@@ -11,28 +11,10 @@ router.get('/users', (req, res, next) => {
         .catch(err => console.log(err))
 });
 
-router.get('/api/managers', (req, res, next) => {
-    let managers, teamMembers;
-    models.User.managerRecords()
-        .then(_managers => {
-            managers = _managers;
-        })
-        .then(() => {
-            return models.User.teamRecords()
-        })
-        .then(_teamMembers => {
-            teamMembers = _teamMembers;
-        })
-        .then(() => {
-            res.send({ managers, teamMembers });
-        })
-        .catch(err => console.log(err));
-});
-
-router.put('/api/managers/:id', (req, res, next) => {
-    models.User.findUpdateMgrById(req.params.id)
-        .then(() => {
-            res.send();
+router.put('/users/edit', (req, res, next) => {
+    models.User.changeManager(req.body.userID, req.body.managerID)
+        .then(users => {
+            res.send(users);
         })
         .catch(err => console.log(err));
 });

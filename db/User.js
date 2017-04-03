@@ -25,69 +25,23 @@ const defineMethods = {
                     ['name', 'ASC']
                 ]
             })
+        },
+        findById: function (userID) {
+            return this.findOne({
+                where: {id: userID}
+            })
+        },
+        changeManager: function(userID, managerID){
+            return this.findById(userID)
+                .then(user => {
+                    user.managerId = managerID;
+                    return user.save();
+                })
+                .then(() => this.userRecords());
         }
     }
-};
 
-// const defineMethods = {
-//     classMethods: {
-//         managerRecords: function() {
-//             return this.findAll({ 
-//                 where: {isMgr: true },
-//                 include: [
-//                     { model: this,
-//                         as: 'teamMember'
-//                     }
-//                 ],
-//                 order: [
-//                     ['name', 'ASC']
-//                 ]
-//             })
-//         },
-//         teamRecords: function() {
-//             return this.findAll({
-//                 order: [
-//                     ['name', 'ASC']
-//                 ]
-//             })
-//         },
-//         findRemMgrId: function (selectedId) {
-//             return this.findAll({
-//                 where: {managerId: selectedId}
-//             })
-//             .then(_users => {
-//                 _users.forEach(_user => {
-//                     _user.managerId = null;
-//                     _user.save();
-//                 })
-//             })
-//         },
-//         findById: function (selectedId) {
-//             return this.findOne({
-//                 where: {id: selectedId}
-//             })
-//         },
-//         findUpdateMgrById: function (selectedId) {
-//             let mgrId;
-//             return this.findById(selectedId)
-//                 .then(_mgr => {
-//                     mgrId = _mgr.id;
-//                     _mgr.isMgr = !_mgr.isMgr;
-//                     return _mgr.save();
-//                 })
-//                 .then(() => {
-//                     return this.findRemMgrId(mgrId)
-//                 })
-//         },
-//         assignMgr: function(selectedId, mgrId) {
-//             return this.findById(selectedId)
-//                 .then(_mgr => {
-//                     _mgr.managerId = mgrId;
-//                     return _mgr.save();
-//                 })
-//         }
-//     }
-// };
+};
 
 const User = acmeDB.define('user', defineAttr, defineMethods);
 
