@@ -1,2 +1,3 @@
-deployed:  
-https://git.heroku.com/mysterious-hollows-29023.git
+deployed: 
+ 
+https://mysterious-hollows-29023.herokuapp.com/
